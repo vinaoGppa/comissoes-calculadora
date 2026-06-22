@@ -95,10 +95,22 @@ test("Adesão Televendas jan2027 - teto cai pra 60% (regra dos -10pp)", () => {
   assert.strictEqual(r.comissaoPercentual, 60);
 });
 
-test("Adesão Atendimento Noturno/Cemitério - zero planos não bate nenhuma faixa (mínimo é 1)", () => {
-  const r = calcularAdesao(1000, 0, "atendimento", "plantao_noturno_cemiterio", "base", rules);
+test("Adesão Atendimento Noturno/Cemitério - 1 plano não bate nenhuma faixa (mínimo é 2)", () => {
+  const r = calcularAdesao(1000, 1, "atendimento", "plantao_noturno_cemiterio", "base", rules);
   assert.strictEqual(r.faixaAtual, null);
   assert.strictEqual(r.comissaoValor, 0);
+});
+
+test("Adesão Atendimento Noturno/Cemitério - 2 planos = 20%", () => {
+  const r = calcularAdesao(1000, 2, "atendimento", "plantao_noturno_cemiterio", "base", rules);
+  assert.strictEqual(r.comissaoPercentual, 20);
+});
+
+test("Adesão Atendimento Noturno/Cemitério - 6+ planos = 70% (jan2027 cai pra 60%)", () => {
+  const base = calcularAdesao(1000, 8, "atendimento", "plantao_noturno_cemiterio", "base", rules);
+  const jan2027 = calcularAdesao(1000, 8, "atendimento", "plantao_noturno_cemiterio", "jan2027", rules);
+  assert.strictEqual(base.comissaoPercentual, 70);
+  assert.strictEqual(jan2027.comissaoPercentual, 60);
 });
 
 test("Adesão - taxa negativa lança erro", () => {

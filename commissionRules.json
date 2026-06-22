@@ -6,7 +6,8 @@
     "Assunção: a regra de redução do teto de Adesão ('percentual máximo da Remuneração sobre Adesão') foi aplicada às 4 tabelas de Adesão (Televendas e Atendimento Diurno/Comercial/Noturno-Cemitério), pois o documento não restringe a redução só ao Televendas nessa seção. Confirmar com o usuário se algum turno de Atendimento deve ficar de fora.",
     "Bônus de 1%/2% sobre a 1ª parcela (Adesão Televendas, 28-33 e 34+ planos) é exibido como nota informativa apenas — não é somado automaticamente ao valor calculado, por decisão do usuário.",
     "Comissão sobre Parcelas Pagas é exclusiva da equipe de Televendas (restrição expressa no regulamento, seção 'Regras de Negócio').",
-    "Gratificação de Vendas Imediatas e Gratificação de Vendas Previdenciárias: faixas informadas diretamente pelo usuário no chat em 2026-06-22 (não constam no docx original). Estrutura em camadas confirmada pelo usuário: abaixo de R$2.000,00 não há gratificação (0%); cada categoria tem campo de faturamento próprio, independente do valor já usado em Urnas/Itens Diversos."
+    "Gratificação de Vendas Imediatas e Gratificação de Vendas Previdenciárias: faixas informadas diretamente pelo usuário no chat em 2026-06-22 (não constam no docx original). Estrutura em camadas confirmada pelo usuário: abaixo de R$2.000,00 não há gratificação (0%); cada categoria tem campo de faturamento próprio, independente do valor já usado em Urnas/Itens Diversos.",
+    "Correção 2026-06-22: tabela 4.3 (Adesão, Plantão Noturno e Cemitério) extraída errado da primeira leitura do docx (tinha colocado só 1 faixa 'a partir de 1 plano = 70%'). Usuário enviou print da tabela real do regulamento: 2 planos=20%, 3-5 planos=60%, acima de 6=70%. Corrigido com a mesma regra de redução de -5pp/-10pp aplicada nos períodos out2026/jan2027."
   ],
 
   "periodosVigencia": {
@@ -109,9 +110,9 @@
         "jan2027": [ { "min": 0, "max": 8,    "percentual": 10 }, { "min": 9,  "max": 12, "percentual": 50 }, { "min": 13, "max": null, "percentual": 60 } ]
       },
       "plantao_noturno_cemiterio": {
-        "base":    [ { "min": 1, "max": null, "percentual": 70 } ],
-        "out2026": [ { "min": 1, "max": null, "percentual": 65 } ],
-        "jan2027": [ { "min": 1, "max": null, "percentual": 60 } ]
+        "base":    [ { "min": 2, "max": 2,    "percentual": 20 }, { "min": 3, "max": 5, "percentual": 60 }, { "min": 6, "max": null, "percentual": 70 } ],
+        "out2026": [ { "min": 2, "max": 2,    "percentual": 15 }, { "min": 3, "max": 5, "percentual": 55 }, { "min": 6, "max": null, "percentual": 65 } ],
+        "jan2027": [ { "min": 2, "max": 2,    "percentual": 10 }, { "min": 3, "max": 5, "percentual": 50 }, { "min": 6, "max": null, "percentual": 60 } ]
       }
     }
   },
