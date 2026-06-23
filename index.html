@@ -140,26 +140,46 @@
 
       <!-- PARCELAS -->
       <section class="aba-conteudo escondida" id="aba-parcelas">
+        <p class="aviso">Exclusiva da equipe de Televendas, conforme regulamento.</p>
+
         <div class="cartao">
-          <h2 class="titulo-secao">Comissão sobre Parcelas Pagas</h2>
-          <p class="aviso">Exclusiva da equipe de Televendas, conforme regulamento.</p>
-          <div class="grade-campos">
-            <div class="campo">
-              <label for="parcela-numero">Parcela</label>
-              <select id="parcela-numero">
-                <option value="primeira">1ª Parcela</option>
-                <option value="segunda">2ª Parcela</option>
-                <option value="terceira">3ª Parcela</option>
-                <option value="quarta">4ª Parcela</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="parcela-valor">Valor da parcela paga (R$)</label>
-              <input type="number" id="parcela-valor" min="0" step="0.01" placeholder="0,00">
-            </div>
+          <h2 class="titulo-secao">1ª Parcela</h2>
+          <div class="campo">
+            <label for="parcela1-valor">Valor da 1ª parcela paga (R$)</label>
+            <input type="number" id="parcela1-valor" min="0" step="0.01" placeholder="0,00">
           </div>
-          <button class="btn-calcular" id="btn-parcela">Calcular comissão</button>
-          <div class="resultado" id="resultado-parcela"></div>
+          <button class="btn-calcular" id="btn-parcela1">Calcular comissão</button>
+          <div class="resultado" id="resultado-parcela1"></div>
+        </div>
+
+        <div class="cartao">
+          <h2 class="titulo-secao">2ª Parcela</h2>
+          <div class="campo">
+            <label for="parcela2-valor">Valor da 2ª parcela paga (R$)</label>
+            <input type="number" id="parcela2-valor" min="0" step="0.01" placeholder="0,00">
+          </div>
+          <button class="btn-calcular" id="btn-parcela2">Calcular comissão</button>
+          <div class="resultado" id="resultado-parcela2"></div>
+        </div>
+
+        <div class="cartao">
+          <h2 class="titulo-secao">3ª Parcela</h2>
+          <div class="campo">
+            <label for="parcela3-valor">Valor da 3ª parcela paga (R$)</label>
+            <input type="number" id="parcela3-valor" min="0" step="0.01" placeholder="0,00">
+          </div>
+          <button class="btn-calcular" id="btn-parcela3">Calcular comissão</button>
+          <div class="resultado" id="resultado-parcela3"></div>
+        </div>
+
+        <div class="cartao">
+          <h2 class="titulo-secao">4ª Parcela</h2>
+          <div class="campo">
+            <label for="parcela4-valor">Valor da 4ª parcela paga (R$)</label>
+            <input type="number" id="parcela4-valor" min="0" step="0.01" placeholder="0,00">
+          </div>
+          <button class="btn-calcular" id="btn-parcela4">Calcular comissão</button>
+          <div class="resultado" id="resultado-parcela4"></div>
         </div>
       </section>
 
@@ -187,6 +207,6 @@
   </main>
 
   <script src="commissionLogic.js?v=2"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

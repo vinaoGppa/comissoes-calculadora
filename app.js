@@ -13,6 +13,7 @@
     ["gratPrevidenciarias", "Gratificação de Vendas Previdenciárias"],
     ["parcela", "Parcelas (Televendas)"]
   ];
+  const PARCELA_KEYS = ["parcela1", "parcela2", "parcela3", "parcela4"];
 
   const fmtMoeda = (v) =>
     v.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -80,7 +81,13 @@
     ul.innerHTML = "";
     let total = 0;
     RESUMO_ORDEM.forEach(([key, label]) => {
-      const r = ultimosResultados[key];
+      let r = ultimosResultados[key];
+      if (key === "parcela") {
+        const partes = PARCELA_KEYS.map((k) => ultimosResultados[k]).filter(Boolean);
+        r = partes.length
+          ? { detalhe: partes.map((p) => p.detalhe).join(" + "), valor: partes.reduce((s, p) => s + p.valor, 0) }
+          : null;
+      }
       const li = document.createElement("li");
       if (r) {
         total += r.valor;
@@ -281,21 +288,29 @@
       }
     });
 
-    // Parcelas
-    document.getElementById("btn-parcela").addEventListener("click", () => {
-      if (!rules) return;
-      const v = lerValorPositivo(document.getElementById("parcela-valor"));
-      if (v.erro) return mostrarErro("resultado-parcela", v.erro);
+    // Parcelas — 1ª a 4ª, cada uma calculada e somada à parte no Resumo Total
+    const PARCELAS_CONFIG = [
+      { numero: "primeira", label: "1ª Parcela", categoriaKey: "parcela1" },
+      { numero: "segunda", label: "2ª Parcela", categoriaKey: "parcela2" },
+      { numero: "terceira", label: "3ª Parcela", categoriaKey: "parcela3" },
+      { numero: "quarta", label: "4ª Parcela", categoriaKey: "parcela4" }
+    ];
+    PARCELAS_CONFIG.forEach(({ numero, label, categoriaKey }, i) => {
+      const idx = i + 1;
+      document.getElementById(`btn-parcela${idx}`).addEventListener("click", () => {
+        if (!rules) return;
+        const v = lerValorPositivo(document.getElementById(`parcela${idx}-valor`));
+        if (v.erro) return mostrarErro(`resultado-parcela${idx}`, v.erro);
 
-      const numeroParcela = document.getElementById("parcela-numero").value;
-      try {
-        const resultado = CommissionLogic.calcularParcela(v.valor, numeroParcela, rules);
-        renderizarResultado("resultado-parcela", resultado, {
-          secao: "Parcelas (Televendas)", setor: "televendas", turno: null, label: numeroParcela, categoriaKey: "parcela"
-        });
-      } catch (e) {
-        mostrarErro("resultado-parcela", e.message);
-      }
+        try {
+          const resultado = CommissionLogic.calcularParcela(v.valor, numero, rules);
+          renderizarResultado(`resultado-parcela${idx}`, resultado, {
+            secao: "Parcelas (Televendas)", setor: "televendas", turno: null, label, categoriaKey
+          });
+        } catch (e) {
+          mostrarErro(`resultado-parcela${idx}`, e.message);
+        }
+      });
     });
 
     document.getElementById("btn-limpar-historico").addEventListener("click", () => {
