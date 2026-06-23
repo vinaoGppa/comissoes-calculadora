@@ -19,6 +19,9 @@
 
   const fmtPct = (v) => `${v.toString().replace(".", ",")}%`;
 
+  const fmtNumero = (v) =>
+    v.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
   function carregarRegras() {
     return fetch("commissionRules.json").then((r) => {
       if (!r.ok) throw new Error("Não foi possível carregar commissionRules.json");
@@ -112,7 +115,7 @@
         </div>
         <div class="resultado-linha">
           <span>Falta para próxima faixa (${fmtPct(resultado.faixaProxima.percentual)})</span>
-          <span class="valor">${fmtMoeda(resultado.faltaParaProxima)}</span>
+          <span class="valor">${detalhe.secao === "Adesão" ? fmtNumero(resultado.faltaParaProxima) : fmtMoeda(resultado.faltaParaProxima)}</span>
         </div>
       `
       : "";
