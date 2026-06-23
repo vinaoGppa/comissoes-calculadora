@@ -65,6 +65,7 @@ body {
   justify-content: center;
 }
 .marca-icone svg { width: 22px; height: 22px; color: var(--cor-acento); }
+.marca-icone img { width: 28px; height: 28px; object-fit: contain; }
 .topo h1 {
   margin: 0;
   font-size: 1.35rem;
