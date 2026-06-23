@@ -192,10 +192,13 @@
       const setor = setorSelect.value;
       const turno = document.getElementById("turno").value;
       const periodo = document.getElementById("periodo").value;
+      // Adesão usa tabela própria pra Noturno (seção 4.3 "Plantão Noturno e Cemitério"),
+      // diferente da chave "plantao_noturno" usada em Imediato (Urnas/Itens Diversos).
+      const turnoAdesao = turno === "plantao_noturno" ? "plantao_noturno_cemiterio" : turno;
 
       try {
         const resultado = CommissionLogic.calcularAdesao(
-          taxa.valor, qtd.valor, setor, setor === "atendimento" ? turno : null, periodo, rules
+          taxa.valor, qtd.valor, setor, setor === "atendimento" ? turnoAdesao : null, periodo, rules
         );
         renderizarResultado("resultado-adesao", resultado, {
           secao: "Adesão",
